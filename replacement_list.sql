@@ -71,4 +71,4 @@ FROM totalList c
 JOIN activeList a ON a.bid = c.bid
 JOIN inactiveList b ON b.bid = c.bid
 WHERE a.ActiveCopies < 7
-ORDER BY a.ActiveHistoryCircs, c.AllCircs ASC
+ORDER BY a.ActiveHistoryCircs, c.AllCircs DESC
