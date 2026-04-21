@@ -30,6 +30,7 @@ LEFT JOIN BBIBMAP_V2 bm ON (i.BID = bm.BID AND i.INSTBIT = bm.INSTBIT AND bm.FOL
 LEFT JOIN systemitemcodes_v2 si ON (si.code = i.status AND si.type = i.type)
 LEFT JOIN media_v2 m ON i.media = m.mednumber
 LEFT JOIN branch_v2 br ON br.branchnumber = i.owningbranch
+WHERE i.media in (6, 16) -- 6 is for DVD, 16 is for Restricted DVD
 GROUP BY i.bid, bm.title, br.branchcode, i.status, si.description, 
 i.cumulativehistory, bm.publishingdate, bm.isbn
 ORDER BY i.bid ASC
