@@ -44,3 +44,38 @@ left join patron_v2 pa on t.patronid = pa.patronid
 left join patronfiscal_v2 p on t.patronid = p.patronid
 where pa.bty in (8, 9, 10)
 and t.systemtimestamp >= TO_DATE('2025-01-01', 'YYYY-MM-DD');
+
+
+
+/*The transactions by month of Annual Fee Paying patrons*/
+select tx.transactiontype, 
+tx.txtransdate,
+tx.envbranch,
+tx.pwd,
+tx.termnumber,
+tx.patronid, 
+tx.patronbty,
+tx.patronguid,
+tx.itembranch,
+tx.item,
+tx.itemmedia,
+tx.itemlocation,
+tx.itemstatus,
+tx.itemcn,
+tx.txpickupbranch,
+pa.bty,
+pa.zip1,
+pa.zip2,
+pa.regdate,
+pa.regbranch,
+pa.state1,
+pa.state2,
+pf.amount,
+pf.notes
+from txlog_v2 tx
+left join patron_v2 pa on pa.patronid = tx.patronid
+left join patronfiscal_v2 pf on pf.patronid = tx.patronid
+where pa.bty in (8, 9, 10)
+and transactiontype in ('CH', 'RN')
+and tx.SYSTEMTIMESTAMP >= to_date('2025-12-01', 'YYYY-MM-DD')
+and tx.SYSTEMTIMESTAMP < to_date('2026-01-01', 'YYYY-MM-DD');
