@@ -10,7 +10,10 @@ or state1 not like 'ok%'
 or state1 not like 'Ok%'
 and (state2 not like 'OK%' or state2 is null);
 
-
+/* 
+The Annual Fee Transactions - but it doesn't cover if the notes are in 
+different formats 
+*/
 select to_char(transdate, 'YYYY-MM'), count(*)
 from patronfiscal_v2
 where amount = 7000
